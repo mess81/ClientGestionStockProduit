@@ -11,6 +11,8 @@ import { ContentComponent } from './content/content.component';
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProductService } from './produit/produit.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,10 +26,11 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
     // NgbModule
   ],
-  providers: [ProduitMockService],
+  providers: [ ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

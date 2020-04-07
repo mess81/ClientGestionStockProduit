@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Produit } from '../shared/Produit';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProductService } from './produit.service';
 import { ActivatedRoute } from '@angular/router';
+import { Produit } from '../shared/Produit';
 
 @Component({
   selector: 'app-produit',
@@ -36,7 +36,6 @@ export class ProduitComponent implements OnInit {
     });
   }
   loadProduct() {
-    console.log('22222222', this.selectedProduit.ref)
     this.produitService.getProducts().subscribe(
       data => {this.produits = data},
       error => {console.log('An error was occured.', error)},
@@ -53,9 +52,12 @@ export class ProduitComponent implements OnInit {
         this.loadProduct();
       }
     )
+  
   }
 
   updateProduit() {
+     
+    console.log('555555555', this.selectedProduit);
     this.produitService.updateProduct(this.selectedProduit).subscribe(
       res => {
         this.initProduit();
@@ -65,12 +67,12 @@ export class ProduitComponent implements OnInit {
   }
 
   initProduit(){
-    this.selectedProduit = new Produit();
+    this.selectedProduit = new Produit(); 
     this.creatForm();
   }
 
   deleteProduit() {
-    this.produitService.deleteProduct(this.selectedProduit.ref).subscribe(
+    this.produitService.deleteProduct(this.selectedProduit.id).subscribe(
       res => {
         this.selectedProduit = new Produit();
         this.loadProduct();

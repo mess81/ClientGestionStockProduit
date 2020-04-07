@@ -13,6 +13,8 @@ export class ProductService {
     }
 
     addProduct(produit: Produit): Observable<any>{
+        console.log('==============>>>>', produit);
+        console.log('==============>>>>', this.http.post(API_URLS.PRODUITS_URL, produit));
         return this.http.post(API_URLS.PRODUITS_URL, produit);
     }
 
@@ -20,7 +22,7 @@ export class ProductService {
         return this.http.put(API_URLS.PRODUITS_URL, produit);
     }
 
-    deleteProduct(ref: string): Observable<any>{
-        return this.http.delete(API_URLS.PRODUITS_URL + '/${ref}');
+    deleteProduct(id: number): Observable<any>{
+        return this.http.delete(API_URLS.PRODUITS_URL + `/${id}`);
     }
 }
